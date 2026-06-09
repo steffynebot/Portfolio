@@ -131,27 +131,39 @@ document.addEventListener('DOMContentLoaded',function(){
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream:      #0F0F12;
-  --nude:       #1A1A22;
-  --nude2:      #252530;
-  --blush:      #FDCA40;
-  --rose:       #DF2935;
-  --rose-dark:  #ff4455;
-  --sage:       #3772FF;
-  --sand:       #a8b4ff;
-  --text:       #F0F0F5;
-  --text-2:     #C0C0CC;
-  --muted:      #7878A0;
-  --white:      #1A1A22;
-  --border:     #2E2E3E;
+  /* ── Palette C — Scandinave Clean ── */
+  --cream:      #F8FBFE;   /* blanc glacier — fond général */
+  --nude:       #F4F9FD;   /* fond très clair sections */
+  --nude2:      #EBF5FB;   /* glacier — cartes, highlights */
+  --mint:       #B2DDD4;   /* vert eau pâle — tags, accents */
+  --mint-light: #D9F0EC;   /* vert eau très clair */
+  --mint-dark:  #5FA898;   /* vert eau foncé — liens secondaires */
+  --coral:      #F9E07A;   /* jaune citron pastel — CTA, accents */
+  --coral-light:#FDF3C0;   /* jaune très clair — hover */
+  --coral-dark: #E8C93A;   /* jaune foncé — hover btn */
+  --slate:      #344FA0;   /* indigo — sidebar, éléments forts */
+  --slate-dark: #243880;   /* indigo foncé — hover sidebar */
+  --ochre:      #5FA898;   /* alias mint-dark */
+  --blush:      #F9E07A;   /* alias coral */
+  --rose:       #F9E07A;   /* alias coral */
+  --rose-dark:  #E8C93A;   /* alias coral-dark */
+  --sage:       #5FA898;   /* vert eau foncé */
+  --sand:       #EBF5FB;   /* glacier */
+  --text:       #1A2A4A;   /* bleu nuit — texte principal */
+  --text-2:     #3D5070;   /* texte secondaire */
+  --muted:      #7A92AA;   /* texte atténué */
+  --white:      #FFFFFF;
+  --border:     #D0E8F2;   /* bordures douces */
   --sidebar-w:  280px;
   --sidebar-w-collapsed: 60px;
   --serif: 'Playfair Display', Georgia, serif;
   --sans:  'Inter', system-ui, sans-serif;
 }
+
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--cream);color:var(--text);line-height:1.65;font-size:15px;}
+body{font-family:var(--sans);background: var(--cream);color:var(--text);line-height:1.65;font-size:15px;}
 
 /* ══ LAYOUT ══ */
 .app-layout{display:flex;min-height:100vh;}
@@ -159,8 +171,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 /* ══ SIDEBAR ══ */
 .sidebar{
   width:var(--sidebar-w);
-  background:var(--white);
-  border-right:1px solid var(--border);
+  background:var(--slate);
+  border-right:1px solid rgba(255,255,255,0.1);
   position:fixed;top:0;left:0;height:100vh;
   overflow-y:auto;z-index:200;
   display:flex;flex-direction:column;
@@ -172,7 +184,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);line-heig
 .sidebar-toggle-btn{
   position:fixed;top:50vh;left:calc(var(--sidebar-w) - 14px);transform:translateY(-50%);
   width:28px;height:28px;border-radius:50%;
-  background:var(--rose);color:white;border:2.5px solid white;
+  background:var(--coral);color:white;border:2.5px solid white;
   cursor:pointer;z-index:400;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 2px 8px rgba(0,0,0,.4);
@@ -211,7 +223,7 @@ body.sidebar-collapsed .sidebar-toggle-btn{
   box-shadow:0 4px 16px rgba(201,122,94,.3);
   border:3px solid var(--white);
 }
-.sidebar-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:3px;letter-spacing:-.2px;}
+.sidebar-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#FFFFFF;margin-bottom:3px;letter-spacing:-.2px;}
 .sidebar-name em{color:var(--rose);font-style:italic;}
 .sidebar-role{font-size:.72rem;color:var(--muted);line-height:1.55;margin-bottom:12px;}
 .sidebar-badge{
@@ -228,7 +240,7 @@ body.sidebar-collapsed .sidebar-toggle-btn{
 .sidebar-nav a{
   display:flex;align-items:center;gap:10px;
   padding:10px 22px;font-size:.84rem;font-weight:500;
-  color:var(--text-2);text-decoration:none;
+  color:rgba(255,255,255,0.75);text-decoration:none;
   border-left:2px solid transparent;transition:all .2s;cursor:pointer;
 }
 .sidebar-nav a:hover{color:var(--text);background:var(--nude);border-left-color:var(--blush);}
@@ -308,9 +320,9 @@ body.sidebar-collapsed .sidebar-toggle-btn{
 
 /* ══ SECTION HEADER ══ */
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
-.section-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:6px;display:flex;align-items:center;gap:7px;}
+.section-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral);margin-bottom:6px;display:flex;align-items:center;gap:7px;}
 .section-eyebrow::before{content:'';width:18px;height:1.5px;background:var(--rose);border-radius:2px;}
-.section-title-serif{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);letter-spacing:-.3px;}
+.section-title-serif{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--slate);letter-spacing:-.3px;}
 .wavy{display:block;margin-top:3px;color:var(--blush);font-size:1rem;letter-spacing:3px;}
 
 /* ══ FILTRES ══ */
@@ -366,7 +378,7 @@ body.sidebar-collapsed .sidebar-toggle-btn{
 .project-mini-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
 .project-mini-tags .tag{
   font-size:.62rem;padding:2px 7px;
-  background:var(--nude2);color:var(--text-2);
+  background:var(--mint-light);color:var(--mint-dark);
   border:1px solid var(--border);border-radius:20px;
 }
 .project-mini-arrow{
@@ -402,10 +414,10 @@ body.sidebar-collapsed .sidebar-toggle-btn{
 .project-card{display:none !important;}
 .project-card:hover{box-shadow:0 12px 36px rgba(8,7,8,.09);transform:translateY(-3px);}
 .project-header{padding:20px 24px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--border);}
-.project-number{font-size:.63rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;}
+.project-number{font-size:.63rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral);margin-bottom:3px;}
 .project-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3;letter-spacing:-.1px;}
 .project-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.tag{background:var(--nude);color:var(--text-2);border:1px solid var(--nude2);padding:2px 9px;border-radius:20px;font-size:.69rem;font-weight:600;}
+.tag{background:var(--nude);color:var(--mint-dark);border:1px solid var(--nude2);padding:2px 9px;border-radius:20px;font-size:.69rem;font-weight:600;}
 .project-body{display:flex;flex-direction:column;gap:0;flex:1;}
 .project-desc{padding:22px 24px;border-right:none;border-bottom:1px solid var(--border);}
 .project-desc h4{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
@@ -435,7 +447,7 @@ body.sidebar-collapsed .sidebar-toggle-btn{
 .timeline{position:relative;padding-left:24px;}
 .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1.5px;background:linear-gradient(180deg,var(--rose),rgba(201,122,94,.1));}
 .tl-block{position:relative;margin-bottom:26px;}
-.tl-dot{position:absolute;left:-21px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--rose);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--blush);}
+.tl-dot{position:absolute;left:-21px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--coral);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--blush);}
 .tl-dot.muted{background:var(--sand);box-shadow:0 0 0 2px var(--nude2);}
 .tl-date{font-size:.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;}
 .tl-title{font-size:.93rem;font-weight:600;color:var(--text);margin-bottom:2px;line-height:1.35;}
@@ -499,7 +511,7 @@ footer a:hover{color:var(--rose);}
 .qui-card p{font-size:.88rem;color:var(--text-2);line-height:1.75;}
 .qui-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
 .stat-item{background:var(--nude);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
-.stat-num{display:block;font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--blush);line-height:1;}
+.stat-num{display:block;font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--coral);line-height:1;}
 .stat-num sup{font-size:1rem;}
 .stat-label{display:block;font-size:.75rem;color:var(--muted);margin-top:6px;font-weight:600;letter-spacing:.5px;}
 
@@ -507,10 +519,10 @@ footer a:hover{color:var(--rose);}
 .btn-project-link{
   display:inline-flex;align-items:center;gap:6px;
   padding:9px 16px;border-radius:8px;font-size:.83rem;font-weight:600;
-  background:var(--sage);color:white;text-decoration:none;
+  background:var(--coral);color:white;text-decoration:none;
   transition:background .15s, transform .15s;
 }
-.btn-project-link:hover{background:var(--rose);transform:translateY(-1px);}
+.btn-project-link:hover{background:var(--mint-dark);transform:translateY(-1px);}
 
 /* ── NAV LABEL ── */
 .nav-label{display:inline;}
@@ -923,8 +935,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="btn-ghost" href="https://inria.hal.science/hal-05436705v2" target="_blank">Publication HAL ↗</a>
   </div>
   <div class="contact-info">
-    <span>📍 Saint-Germain-en-Laye (78)</span>
-    <span>📱 06 51 58 20 27</span>
     <span>✉️ andrea.nebot@outlook.com</span>
   </div>
   <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
@@ -1025,7 +1035,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 <style>
 /* Styles des cartes originales dans la modale */
 .project-modal .project-header{padding:28px 36px 22px;border-bottom:1px solid var(--border);}
-.project-modal .project-number{font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:6px;}
+.project-modal .project-number{font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral);margin-bottom:6px;}
 .project-modal .project-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:14px;line-height:1.3;}
 .project-modal .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0;}
 .project-modal .project-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
@@ -1045,7 +1055,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 .project-modal .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:600;text-decoration:none;transition:all .15s;}
 .project-modal .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text-2);}
 .project-modal .btn-outline:hover{border-color:var(--sage);color:var(--sage);}
-.project-modal .btn-primary{background:var(--rose);color:white;border:none;}
+.project-modal .btn-primary{background:var(--coral);color:white;border:none;}
 .project-modal .btn-primary:hover{background:var(--rose-dark);}
 @media(max-width:700px){
   .project-modal .project-body{grid-template-columns:1fr;}
@@ -1054,6 +1064,113 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
   .project-modal .project-desc{padding:20px;}
   .project-modal .screenshots{padding:20px;}
 }
+
+
+/* ════ PALETTE C — SCANDINAVE CLEAN ════ */
+
+/* Sidebar fond indigo */
+.sidebar { background: var(--slate) !important; border-right: 1px solid rgba(255,255,255,0.08) !important; }
+
+/* Sidebar texte */
+.sidebar-name  { color: #FFFFFF !important; }
+.sidebar-title { color: rgba(255,255,255,0.65) !important; }
+.sidebar-section-title { color: rgba(255,255,255,0.40) !important; letter-spacing: 2px; font-size:.6rem; }
+
+/* Sidebar nav links */
+.sidebar-nav a { color: rgba(255,255,255,0.72) !important; }
+.sidebar-nav a:hover { color: #FFFFFF !important; background: rgba(249,224,122,0.15); border-radius: 8px; }
+.sidebar-nav a.active { color: #FFFFFF !important; background: rgba(249,224,122,0.18) !important; border-radius: 8px; }
+
+/* Avatar border */
+.sidebar-avatar { border: 3px solid var(--mint) !important; }
+
+/* Status badge */
+.status-badge { background: var(--mint) !important; color: var(--slate) !important; font-weight: 700; }
+
+/* Toggle btn */
+.sidebar-toggle-btn { background: var(--coral) !important; color: var(--slate) !important; border: 2px solid white !important; }
+.sidebar-toggle-btn:hover { background: var(--coral-dark) !important; }
+
+/* Main content fond */
+.main-content { background: var(--cream) !important; }
+
+/* Section eyebrow */
+.section-eyebrow { color: var(--mint-dark) !important; }
+
+/* Titres de section */
+.section-title-serif { color: var(--text) !important; }
+.section-title-serif::after { content:''; display:block; width:40px; height:3px; background:var(--coral); border-radius:2px; margin-top:8px; }
+
+/* Tags */
+.tag, .tl-tag { background: var(--mint-light) !important; color: var(--mint-dark) !important; }
+
+/* Boutons primaires → jaune indigo */
+.btn-primary { background: var(--coral) !important; color: var(--slate) !important; font-weight:700; }
+.btn-primary:hover { background: var(--coral-dark) !important; }
+
+/* btn-dark → indigo */
+.btn-dark { background: var(--slate) !important; color: #fff !important; }
+.btn-dark:hover { background: var(--slate-dark) !important; }
+
+/* Project-number → jaune */
+.project-number, .project-mini-num { color: var(--coral-dark) !important; }
+
+/* Mini-cards */
+.project-mini-card { background: #FFFFFF !important; border: 1px solid var(--border) !important; }
+.project-mini-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(52,79,160,0.12); border-color: var(--mint) !important; }
+.project-mini-card[data-category="inria"]       { border-top: 3px solid var(--mint); }
+.project-mini-card[data-category="datascience"] { border-top: 3px solid var(--coral-dark); }
+.project-mini-card[data-category="nlp"]         { border-top: 3px solid var(--slate); }
+.project-mini-card[data-category="sante"]       { border-top: 3px solid var(--mint-dark); }
+.project-mini-card[data-category="nlp sante"]   { border-top: 3px solid var(--mint); }
+
+/* Filter buttons */
+.filter-btn { border-color: var(--border) !important; color: var(--text-2) !important; background: #fff; }
+.filter-btn:hover:not(.active) { border-color: var(--mint) !important; color: var(--mint-dark) !important; }
+.filter-btn.active { background: var(--slate) !important; color: #fff !important; border-color: var(--slate) !important; }
+
+/* Timeline dots */
+.tl-dot { background: var(--mint-dark) !important; }
+.tl-date { color: var(--mint-dark) !important; }
+
+/* Stats */
+.stat-num { color: var(--slate) !important; }
+.stat-item { background: var(--nude2) !important; border-color: rgba(52,79,160,0.12) !important; }
+
+/* Skill cards */
+.skill-card { background: var(--nude) !important; border-color: var(--border) !important; }
+.skill-card:hover { border-color: var(--mint) !important; box-shadow: 0 4px 16px rgba(178,221,212,0.3); }
+
+/* Highlight box dans modales */
+.project-modal .highlight-box, .highlight-box { border-left-color: var(--mint-dark) !important; background: rgba(178,221,212,0.1) !important; }
+
+/* Modale overlay */
+.project-modal-overlay { background: rgba(248, 249, 252, 0.65) !important; backdrop-filter: blur(6px) !important; }
+.project-modal { background: var(--cream) !important; }
+.project-modal-close { color: var(--text) !important; background: var(--nude2) !important; border: 1.5px solid var(--border) !important; }
+.project-modal-close:hover { background: var(--slate) !important; color: white !important; }
+
+/* Liens */
+a { color: var(--slate); }
+a:hover { color: var(--mint-dark); }
+
+/* Section header */
+.section-header { background: var(--nude2) !important; }
+
+/* btn-project-link */
+.btn-project-link { background: var(--slate) !important; color: #fff !important; }
+.btn-project-link:hover { background: var(--mint-dark) !important; }
+
+/* Contact links */
+.contact-link:hover { color: var(--mint-dark) !important; }
+
+/* Qui suis-je cards */
+#section-quisuisje .qui-card { background: #FFFFFF !important; border-color: var(--border) !important; }
+#section-quisuisje .qui-card:hover { border-color: var(--mint) !important; box-shadow: 0 6px 20px rgba(178,221,212,0.25); }
+
+/* Project header */
+.project-header { background: linear-gradient(135deg, rgba(178,221,212,0.1) 0%, #ffffff 100%) !important; }
+
 </style>
 <div class="project-modal-overlay" id="modal-1">
   <div class="project-modal">
@@ -1154,8 +1271,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
   <!-- Placeholder pour les prochains projets -->
 
   <!-- ── PROJET 2 : Affiliations Merger ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1247,8 +1362,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 
   <!-- ── PROJET 3 : Tableau Cybersécurité ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1373,8 +1486,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 
   <!-- ── PROJET 4 : KNIME Automatisation ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1492,8 +1603,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 
   <!-- ── PROJET 5 : GitHub Repos Data Science & Analyst ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1548,37 +1657,37 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
           <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,#8e44ad,#6c3483); display:flex; align-items:center; justify-content:center; font-size:1.1rem;">🧠</div>
           <div>
-            <div style="font-size:0.7rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8e44ad;">Repo 01</div>
+            <div style="font-size:0.7rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--slate);">Repo 01</div>
             <div style="font-weight:700; color:var(--dark); font-size:0.95rem;">Projets Data Scientist</div>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:7px; margin-bottom:14px;">
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">01.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">01.</span>
             <span>Analyse des systèmes éducatifs mondiaux &mdash; datavisualisation &amp; storytelling</span>
           </div>
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">02.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">02.</span>
             <span>Application santé publique &mdash; modélisation de propagation de maladie</span>
           </div>
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">03.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">03.</span>
             <span>Anticipation consommation énergétique &mdash; régression &amp; séries temporelles</span>
           </div>
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">04.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">04.</span>
             <span>Segmentation clients e-commerce &mdash; K-means, PCA, analyse RFM</span>
           </div>
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">05&ndash;06.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">05&ndash;06.</span>
             <span>Classification produits (SVM, Random Forest) &amp; scoring client (ROC/AUC)</span>
           </div>
           <div style="display:flex; align-items:flex-start; gap:8px; font-size:0.83rem; color:var(--text);">
-            <span style="color:#8e44ad; font-weight:700; flex-shrink:0;">07.</span>
+            <span style="color:var(--slate); font-weight:700; flex-shrink:0;">07.</span>
             <span>Déploiement cloud &mdash; Flask/FastAPI, Docker, GCP, AWS, CI/CD</span>
           </div>
         </div>
-        <a href="https://github.com/steffynebot/Projets-Data-Scientist" target="_blank" style="display:inline-flex; align-items:center; gap:5px; font-size:0.78rem; font-weight:600; color:#8e44ad; text-decoration:none;">
+        <a href="https://github.com/steffynebot/Projets-Data-Scientist" target="_blank" style="display:inline-flex; align-items:center; gap:5px; font-size:0.78rem; font-weight:600; color:var(--slate); text-decoration:none;">
           &#8599; Voir le repo
         </a>
       </div>
@@ -1690,8 +1799,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 
   <!-- ── PROJET 6 : Réseau Troubles Psychiatriques ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1701,20 +1808,20 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
     <div class="project-modal-content" id="projet-6" data-category="sante nlp">
 <div class="project-header" style="background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);">
       <div>
-        <div class="project-number" style="color:#27AE60;">Projet 06 &mdash; En cours de construction</div>
+        <div class="project-number" style="color:var(--mint-dark);">Projet 06 &mdash; En cours de construction</div>
         <div class="project-title">Networking Troubles, Symptômes &amp; Comorbidités Psychiatriques</div>
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-          <span style="background:#e8f8f1; color:#27AE60; border:1px solid #a9dfbf; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">🏗️ Projet en cours</span>
+          <span style="background:#e8f8f1; color:var(--mint-dark); border:1px solid #a9dfbf; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">🏗️ Projet en cours</span>
           <span style="background:#fef9e7; color:#f39c12; border:1px solid #fdebd0; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">Double compétence Data + Psychiatrie</span>
         </div>
         <div class="project-tags">
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">Python</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">Streamlit</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">NetworkX</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">Graphe de réseau</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">CIM-11 (WHO 2024)</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">Psychiatrie</span>
-          <span class="tag" style="background:#e8f8f1; color:#27AE60; border-color:#a9dfbf;">Visualisation clinique</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">Python</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">Streamlit</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">NetworkX</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">Graphe de réseau</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">CIM-11 (WHO 2024)</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">Psychiatrie</span>
+          <span class="tag" style="background:#e8f8f1; color:var(--mint-dark); border-color:#a9dfbf;">Visualisation clinique</span>
         </div>
       </div>
       <div class="project-links">
@@ -1744,8 +1851,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
           le nombre de comorbidités et les médicaments associés, 
           avec des <strong>filtres dynamiques</strong> par catégorie, symptôme et traitement.
         </p>
-        <div class="highlight-box" style="background:#e8f8f1; border-left-color:#27AE60;">
-          <strong style="color:#27AE60;">Double compétence unique</strong> &mdash; Ce projet illustre la capacité d&rsquo;Andréa à mobiliser 
+        <div class="highlight-box" style="background:#e8f8f1; border-left-color:var(--mint-dark);">
+          <strong style="color:var(--mint-dark);">Double compétence unique</strong> &mdash; Ce projet illustre la capacité d&rsquo;Andréa à mobiliser 
           simultanément son expertise en data science et ses connaissances en psychologie clinique 
           pour produire des outils à forte valeur ajoutée dans le domaine de la santé mentale.
         </div>
@@ -1758,19 +1865,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
         </p>
         <div class="stats-row">
           <div class="stat" style="border-color:#a9dfbf;">
-            <div class="stat-value" style="color:#27AE60;">64</div>
+            <div class="stat-value" style="color:var(--mint-dark);">64</div>
             <div class="stat-label">Troubles CIM-11</div>
           </div>
           <div class="stat" style="border-color:#a9dfbf;">
-            <div class="stat-value" style="color:#27AE60;">3</div>
+            <div class="stat-value" style="color:var(--mint-dark);">3</div>
             <div class="stat-label">Types de nœuds</div>
           </div>
           <div class="stat" style="border-color:#a9dfbf;">
-            <div class="stat-value" style="color:#27AE60;">WHO</div>
+            <div class="stat-value" style="color:var(--mint-dark);">WHO</div>
             <div class="stat-label">Source CIM-11 2024</div>
           </div>
           <div class="stat" style="border-color:#a9dfbf;">
-            <div class="stat-value" style="color:#27AE60;">🏗️</div>
+            <div class="stat-value" style="color:var(--mint-dark);">🏗️</div>
             <div class="stat-label">En construction</div>
           </div>
         </div>
@@ -1789,7 +1896,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
         <!-- Légende nœuds -->
         <div style="border-radius:10px; border:1px solid #a9dfbf; background:#f0faf5; padding:14px 16px;">
-          <div style="font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#27AE60; margin-bottom:10px;">Légende du graphe</div>
+          <div style="font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--mint-dark); margin-bottom:10px;">Légende du graphe</div>
           <div style="display:flex; gap:16px; flex-wrap:wrap; font-size:0.82rem;">
             <div style="display:flex; align-items:center; gap:7px;">
               <div style="width:14px; height:14px; border-radius:50%; background:#e74c3c; flex-shrink:0;"></div>
@@ -1811,8 +1918,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 
   <!-- ── PROJET 7 : NLP Discours sectaires ── -->
-  <div c
-    </div>
   </div>
 </div>
 
@@ -1820,25 +1925,25 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
   <div class="project-modal">
     <button class="project-modal-close" onclick="closeModal()">✕</button>
     <div class="project-modal-content" id="projet-7" data-category="nlp sante">
-<div class="project-header" style="background: linear-gradient(135deg, #f5f0fa 0%, #ffffff 100%);">
+<div class="project-header" style="background: linear-gradient(135deg, rgba(178,221,212,0.08) 0%, #ffffff 100%);">
       <div>
-        <div class="project-number" style="color:#8e44ad;">Projet 07 &mdash; À venir</div>
+        <div class="project-number" style="color:var(--slate);">Projet 07 &mdash; À venir</div>
         <div class="project-title">Analyse NLP &amp; LLM des discours sectaires &mdash; Détection de l&rsquo;emprise linguistique</div>
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-          <span style="background:#f3eafc; color:#8e44ad; border:1px solid #d2b4f0; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">🔬 Projet à venir</span>
+          <span style="background:#f3eafc; color:var(--slate); border:1px solid #d2b4f0; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">🔬 Projet à venir</span>
           <span style="background:#fef9e7; color:#f39c12; border:1px solid #fdebd0; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">Triple compétence Data · Linguistique · Psychologie</span>
           <span style="background:#fdedec; color:#c0392b; border:1px solid #f1948a; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:700;">Approuvé MIVILUDES</span>
         </div>
         <div class="project-tags">
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Python</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">NLP / TAL</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">LLM</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Analyse de discours</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Psycholinguistique</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Détection d&rsquo;emprise</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Prosodie / Pauses</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Hypnose éricksonnienne</span>
-          <span class="tag" style="background:#f3eafc; color:#8e44ad; border-color:#d2b4f0;">Transformers</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Python</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">NLP / TAL</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">LLM</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Analyse de discours</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Psycholinguistique</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Détection d&rsquo;emprise</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Prosodie / Pauses</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Hypnose éricksonnienne</span>
+          <span class="tag" style="background:#f3eafc; color:var(--slate); border-color:#d2b4f0;">Transformers</span>
         </div>
       </div>
     </div>
@@ -1861,7 +1966,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
           <!-- Axe 1 -->
           <div style="background:#f3eafc; border-radius:12px; padding:18px; border-left:3px solid #8e44ad;">
-            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8e44ad; margin-bottom:8px;">Axe 1 &mdash; Analyse lexicale &amp; sémantique</div>
+            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--slate); margin-bottom:8px;">Axe 1 &mdash; Analyse lexicale &amp; sémantique</div>
             <p style="font-size:0.84rem; color:var(--text); line-height:1.65; margin:0;">
               Identification du <strong>vocabulaire de contrôle</strong>&nbsp;: termes de culpabilisation, 
               de récompense/punition, de dévalorisation de l&rsquo;extérieur, 
@@ -1872,7 +1977,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
           <!-- Axe 2 -->
           <div style="background:#f3eafc; border-radius:12px; padding:18px; border-left:3px solid #8e44ad;">
-            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8e44ad; margin-bottom:8px;">Axe 2 &mdash; Structure narrative &amp; rhétorique</div>
+            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--slate); margin-bottom:8px;">Axe 2 &mdash; Structure narrative &amp; rhétorique</div>
             <p style="font-size:0.84rem; color:var(--text); line-height:1.65; margin:0;">
               Analyse des <strong>structures de récit</strong> récurrentes&nbsp;: mise en scène du groupe élu, 
               construction d&rsquo;un ennemi extérieur, chronologie de l&rsquo;endoctrinement. 
@@ -1883,7 +1988,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
           <!-- Axe 3 -->
           <div style="background:#f3eafc; border-radius:12px; padding:18px; border-left:3px solid #8e44ad;">
-            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#8e44ad; margin-bottom:8px;">Axe 3 &mdash; Prosodie, pauses &amp; hypnose</div>
+            <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--slate); margin-bottom:8px;">Axe 3 &mdash; Prosodie, pauses &amp; hypnose</div>
             <p style="font-size:0.84rem; color:var(--text); line-height:1.65; margin:0;">
               Analyse des <strong>caractéristiques prosodiques</strong> des discours oraux&nbsp;: 
               temps de pause, rythme, répétitions et anaphores. 
@@ -1894,8 +1999,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
           </div>
         </div>
 
-        <div class="highlight-box" style="background:#f3eafc; border-left-color:#8e44ad;">
-          <strong style="color:#8e44ad;">Ancrage psychanalytique</strong> &mdash; Le master de psychanalyse en cours (Université Montpellier Paul-Valéry) 
+        <div class="highlight-box" style="background:#f3eafc; border-left-color:var(--slate);">
+          <strong style="color:var(--slate);">Ancrage psychanalytique</strong> &mdash; Le master de psychanalyse en cours (Université Montpellier Paul-Valéry) 
           nourrit directement l&rsquo;approche théorique&nbsp;: compréhension des mécanismes de transfert, 
           d&rsquo;idéalisation et d&rsquo;identification projective à l&rsquo;œuvre dans les processus d&rsquo;emprise.
           La donnée ne suffit pas &mdash; il faut savoir lire ce qu&rsquo;elle dit cliniquement.
@@ -1905,23 +2010,23 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
         <h4 style="margin-top:24px;">Stack technique envisagé</h4>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:10px; margin-top:12px;">
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 14px;">
-            <div style="font-size:0.72rem; font-weight:700; color:#8e44ad; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Collecte &amp; transcription</div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Collecte &amp; transcription</div>
             <div style="font-size:0.82rem; color:var(--text); line-height:1.8;">Whisper (OpenAI) · yt-dlp · BeautifulSoup</div>
           </div>
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 14px;">
-            <div style="font-size:0.72rem; font-weight:700; color:#8e44ad; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">NLP / TAL</div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">NLP / TAL</div>
             <div style="font-size:0.82rem; color:var(--text); line-height:1.8;">spaCy · NLTK · Transformers (HuggingFace) · BERTopic</div>
           </div>
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 14px;">
-            <div style="font-size:0.72rem; font-weight:700; color:#8e44ad; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">LLM &amp; analyse</div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">LLM &amp; analyse</div>
             <div style="font-size:0.82rem; color:var(--text); line-height:1.8;">GPT-4 / Mistral · LangChain · Analyse de sentiment</div>
           </div>
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 14px;">
-            <div style="font-size:0.72rem; font-weight:700; color:#8e44ad; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Prosodie</div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Prosodie</div>
             <div style="font-size:0.82rem; color:var(--text); line-height:1.8;">Librosa · Praat (via Parselmouth) · pyAudioAnalysis</div>
           </div>
           <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 14px;">
-            <div style="font-size:0.72rem; font-weight:700; color:#8e44ad; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Visualisation</div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Visualisation</div>
             <div style="font-size:0.82rem; color:var(--text); line-height:1.8;">Streamlit · Plotly · NetworkX · WordCloud</div>
           </div>
         </div>
@@ -1938,12 +2043,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
           aux victimes et aux instances de veille institutionnelle comme la MIVILUDES.
         </p>
       </div>
-    </div>
-  </div>
-
-  <div id="autres-projets"></div>
-
-  </div><!-- /projects-container -->
     </div>
   </div>
 </div>

@@ -538,6 +538,12 @@ footer a:hover{color:var(--rose);}
   .project-modal-overlay{padding:20px 10px;}
 }
 </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({ publicKey: "eqm_XLo_zcX4vm7k_" });
+    })();
+  </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -943,6 +949,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="btn-ghost" href="https://public.tableau.com/app/profile/datalake.inria" target="_blank" style="font-size:.76rem;">Tableau Public ↗</a>
     <a class="btn-ghost" href="https://github.com/Inria-Datalake" target="_blank" style="font-size:.76rem;">GitHub INRIA ↗</a>
   </div>
+
+  <!-- ══ FORMULAIRE RDV ══ -->
+  <div class="rdv-section">
+    <div class="rdv-title">Prendre <em>rendez-vous</em></div>
+    <p class="rdv-subtitle">Entretien, échange informel, démo de projet — je vous réponds sous 24h.</p>
+    <form class="rdv-form" id="rdv-form" onsubmit="submitRdv(event)">
+      <div class="rdv-field">
+        <label>Prénom & Nom *</label>
+        <input type="text" id="rdv-name" placeholder="Jean Dupont" required>
+      </div>
+      <div class="rdv-field">
+        <label>Email *</label>
+        <input type="email" id="rdv-email" placeholder="jean@entreprise.fr" required>
+      </div>
+      <div class="rdv-field">
+        <label>Entreprise</label>
+        <input type="text" id="rdv-company" placeholder="Nom de l'entreprise">
+      </div>
+      <div class="rdv-field">
+        <label>Type de RDV</label>
+        <select id="rdv-type">
+          <option value="Entretien">💼 Entretien</option>
+          <option value="Échange informel">☕ Échange informel</option>
+          <option value="Démo projet">💻 Démo de projet</option>
+          <option value="Autre">✉️ Autre</option>
+        </select>
+      </div>
+      <div class="rdv-field full">
+        <label>Disponibilités souhaitées</label>
+        <input type="text" id="rdv-dispo" placeholder="ex : semaine du 16 juin, matin de préférence">
+      </div>
+      <div class="rdv-field full">
+        <label>Message</label>
+        <textarea id="rdv-message" placeholder="Décrivez brièvement l'objet de votre prise de contact..."></textarea>
+      </div>
+      <div class="rdv-submit">
+        <button type="submit" class="rdv-btn" id="rdv-submit-btn">
+          <span>📅</span> Envoyer la demande
+        </button>
+      </div>
+      <div class="rdv-success" id="rdv-success">
+        ✅ Votre demande a bien été envoyée ! Je vous réponds sous 24h.
+      </div>
+      <div class="rdv-error" id="rdv-error">
+        ❌ Une erreur s'est produite. Veuillez m'écrire directement à andrea.nebot@outlook.com
+      </div>
+    </form>
+  </div>
+
 </div>
 </div><!-- /section-contact -->
 
@@ -1172,6 +1227,121 @@ a:hover { color: var(--mint-dark); }
 
 /* Project header */
 .project-header { background: linear-gradient(135deg, rgba(178,221,212,0.1) 0%, #ffffff 100%) !important; }
+
+
+/* ══ FORMULAIRE RDV ══ */
+.rdv-section {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+.rdv-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  text-align: center;
+}
+.rdv-title em { color: var(--coral-dark); font-style: italic; }
+.rdv-subtitle {
+  font-size: .82rem;
+  color: var(--text-2);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.rdv-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.rdv-form .full { grid-column: 1 / -1; }
+.rdv-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.rdv-field label {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+.rdv-field input,
+.rdv-field select,
+.rdv-field textarea {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: .87rem;
+  font-family: var(--sans);
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.rdv-field input:focus,
+.rdv-field select:focus,
+.rdv-field textarea:focus {
+  border-color: var(--mint-dark);
+  box-shadow: 0 0 0 3px rgba(178,221,212,0.25);
+}
+.rdv-field textarea { resize: vertical; min-height: 90px; }
+.rdv-submit {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+.rdv-btn {
+  background: var(--slate);
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background .2s, transform .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rdv-btn:hover { background: var(--slate-dark); transform: translateY(-1px); }
+.rdv-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.rdv-success {
+  display: none;
+  grid-column: 1 / -1;
+  background: rgba(178,221,212,0.2);
+  border: 1.5px solid var(--mint);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: center;
+  color: var(--mint-dark);
+  font-weight: 600;
+  font-size: .9rem;
+}
+.rdv-error {
+  display: none;
+  grid-column: 1 / -1;
+  background: rgba(231,76,60,0.08);
+  border: 1.5px solid #e74c3c;
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: center;
+  color: #c0392b;
+  font-size: .85rem;
+}
+@media(max-width:520px){
+  .rdv-form { grid-template-columns: 1fr; }
+  .rdv-form .full { grid-column: 1; }
+}
 
 </style>
 <div class="project-modal-overlay" id="modal-1">
@@ -2048,6 +2218,59 @@ a:hover { color: var(--mint-dark); }
     </div>
   </div>
 </div>
+
+
+<script>
+// ══ FORMULAIRE RDV — EmailJS ══
+// Remplacez les 3 constantes ci-dessous par vos valeurs EmailJS
+var EMAILJS_SERVICE_ID  = "service_2w2e688";   // ex: service_xxxxxxx
+var EMAILJS_TEMPLATE_ID = "template_o2geaid";  // ex: template_xxxxxxx
+// La Public Key est déjà initialisée dans le <head>
+
+function submitRdv(event) {
+  event.preventDefault();
+
+  var btn     = document.getElementById('rdv-submit-btn');
+  var success = document.getElementById('rdv-success');
+  var error   = document.getElementById('rdv-error');
+
+  // Reset
+  success.style.display = 'none';
+  error.style.display   = 'none';
+  btn.disabled          = true;
+  btn.innerHTML         = '<span>⏳</span> Envoi en cours...';
+
+  var params = {
+    from_name   : document.getElementById('rdv-name').value,
+    from_email  : document.getElementById('rdv-email').value,
+    company     : document.getElementById('rdv-company').value || 'Non renseigné',
+    rdv_type    : document.getElementById('rdv-type').value,
+    disponibilites: document.getElementById('rdv-dispo').value || 'Non précisées',
+    message     : document.getElementById('rdv-message').value || '(aucun message)',
+    to_email    : 'andrea.nebot@outlook.com'
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+    .then(function() {
+      success.style.display = 'block';
+      btn.innerHTML = '<span>✅</span> Envoyé !';
+      btn.style.background = 'var(--mint-dark)';
+      // Reset le formulaire après 4s
+      setTimeout(function() {
+        document.getElementById('rdv-form').reset();
+        btn.disabled = false;
+        btn.innerHTML = '<span>📅</span> Envoyer la demande';
+        btn.style.background = '';
+        success.style.display = 'none';
+      }, 4000);
+    }, function(err) {
+      console.error('EmailJS error:', err);
+      error.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = '<span>📅</span> Envoyer la demande';
+    });
+}
+</script>
 
 </body>
 </html>
